@@ -1,0 +1,17 @@
+{
+  "pages": {
+    "stock": {
+      "title": "Stock",
+      "name": "Name",
+      "barcode": "Barcode",
+      "cost": "Cost",
+      "price": "Price",
+      "inStock": "InStock",
+      "pack": "Pack",
+      "quantity": "Quantity"
+    },
+    "member": {
+      "title": "Member"
+    }
+  }
+}
