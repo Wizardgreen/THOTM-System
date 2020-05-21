@@ -7,8 +7,6 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import { useTranslation } from "react-i18next";
-import { Commodity } from "../../store/reducer/type";
-import { useTypedSelector } from "../../store";
 import {
   useFirebaseConnect,
   isLoaded,
@@ -16,14 +14,9 @@ import {
   useFirebase,
 } from "react-redux-firebase";
 
-interface OrderableCommodity extends Commodity {
-  quantity: number;
-  inStock: number;
-}
-
 export default function Stock() {
   useFirebaseConnect(["stock"]);
-  const [stockList, setStockList] = useState<Commodity[]>([]);
+  const [stockList, setStockList] = useState([]);
   const { t } = useTranslation();
   const fetchedStock = useTypedSelector((state) => state.firebase.data.stock);
   useEffect(() => {
