@@ -1,17 +1,16 @@
 {
-  "pages": {
-    "stock": {
-      "title": "庫存",
-      "name": "品名",
-      "barcode": "條碼",
-      "cost": "成本",
-      "price": "售價",
-      "inStock": "庫存數",
-      "pack": "包裝數",
-      "quantity": "訂購數"
-    },
-    "member": {
-      "title": "會員"
-    }
+  "item": {
+    "title": "庫存",
+    "name": "品名",
+    "barcode": "條碼",
+    "cost": "成本",
+    "price": "售價",
+    "inStock": "庫存",
+    "pack": "包裝",
+    "quantity": "訂購數",
+    "buyer": "訂購人"
+  },
+  "member": {
+    "title": "會員"
   }
 }

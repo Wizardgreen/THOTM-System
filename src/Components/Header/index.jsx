@@ -8,13 +8,13 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-function Header(props: {}) {
+function Header(props) {
   const { t } = useTranslation();
-  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
-  const handleClick = (event: React.MouseEvent<HTMLButtonElement>) => {
+  const [anchorEl, setAnchorEl] = useState(null);
+  const handleClick = (event) => {
     setAnchorEl(event.currentTarget);
   };
-  const handleClose = (event: React.MouseEvent<HTMLElement>) => {
+  const handleClose = (event) => {
     setAnchorEl(null);
   };
 
@@ -30,10 +30,10 @@ function Header(props: {}) {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <Link to="/stock">{t("pages.stock.title")}</Link>
+            <Link to="/stock">{t("item.title")}</Link>
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link to="/member">{t("pages.member.title")}</Link>
+            <Link to="/member">{t("member.title")}</Link>
           </MenuItem>
         </Menu>
       </Toolbar>

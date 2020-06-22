@@ -1,0 +1,4 @@
+export const ADD_ORDER = "ADD_ORDER";
+export const DELETE_ORDER = "DELETE_ORDER";
+
+export const ADD_ITEM_TO_ORDER_LIST = "ADD_ITEM_TO_ORDER_LIST";
