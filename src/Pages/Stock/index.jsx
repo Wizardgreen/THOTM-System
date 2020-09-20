@@ -1,14 +1,6 @@
 import React, { useState, useEffect } from "react";
-import Table from "@material-ui/core/Table";
-import TableBody from "@material-ui/core/TableBody";
-import TableCell from "@material-ui/core/TableCell";
-import TableContainer from "@material-ui/core/TableContainer";
-import TableHead from "@material-ui/core/TableHead";
-import TableRow from "@material-ui/core/TableRow";
-import Paper from "@material-ui/core/Paper";
-import Button from "@material-ui/core/Button";
+import Table, { CellType } from "Components/Table";
 import { useSelector } from "react-redux";
-import { useTranslation } from "react-i18next";
 import { isLoaded } from "react-redux-firebase";
 import OrderModal from "./OrderModal";
 
@@ -16,35 +8,21 @@ export default function Stock() {
   const [itemList, setItemList] = useState([]);
   const [memberList, setMemberList] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
-  const { t } = useTranslation();
   const fetchedItemList = useSelector((state) => state.firebase.data.stock);
   const fetchedMemberList = useSelector((state) => state.firebase.data.member);
-  const headers = [
-    { id: "name", label: t("item.name"), width: 400 },
-    { id: "sku", label: "SKU", width: 100 },
+  const tableHeader = [
+    { name: "name", label: "item.name", type: CellType.Text, width: 400 },
+    { name: "sku", label: "SKU", type: CellType.Text, width: 100 },
+    { name: "pack", label: "item.pack", type: CellType.Text, width: 70 },
+    { name: "cost", label: "item.cost", type: CellType.Text, width: 100 },
+    { name: "price", label: "item.price", type: CellType.Text, width: 100 },
+    { name: "inStock", label: "item.inStock", type: CellType.Text, width: 70 },
     {
-      id: "pack",
-      label: t("item.pack"),
-      width: 70,
-      align: "center",
+      name: "none",
+      type: CellType.Button,
+      btnText: "加入",
+      func: (cell) => setSelectedItem(cell),
     },
-    {
-      id: "cost",
-      label: t("item.cost"),
-      width: 100,
-    },
-    {
-      id: "price",
-      label: t("item.price"),
-      width: 100,
-    },
-    {
-      id: "inStock",
-      label: t("item.inStock"),
-      width: 70,
-      align: "center",
-    },
-    { id: "none" },
   ];
 
   useEffect(() => {
@@ -52,6 +30,7 @@ export default function Stock() {
       const data = Object.values(fetchedItemList).map((item) => {
         return {
           ...item,
+          id: item.sku,
           inStock: 0,
           price: item.price.slice(4),
           cost: item.cost.slice(4),
@@ -65,8 +44,10 @@ export default function Stock() {
       setMemberList([stockInfo].concat(Object.values(fetchedMemberList)));
     }
   }, [fetchedItemList, fetchedMemberList]);
+
   return (
-    <TableContainer style={{ marginTop: 40 }} component={Paper}>
+    <div className="stock-page">
+      <Table header={tableHeader} data={itemList} />
       {memberList.length > 0 && (
         <OrderModal
           open={selectedItem !== null}
@@ -75,45 +56,6 @@ export default function Stock() {
           onClose={() => setSelectedItem(null)}
         />
       )}
-      <Table size="small">
-        <TableHead>
-          <TableRow>
-            {headers.map((column) => (
-              <TableCell
-                key={column.id}
-                align={column.align}
-                style={{ width: column.width }}
-              >
-                {column.label}
-              </TableCell>
-            ))}
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {itemList.length > 0 &&
-            itemList.map((item) => {
-              return (
-                <TableRow key={item.sku} hover>
-                  <TableCell align="left">{item.engName}</TableCell>
-                  <TableCell align="left">{item.sku}</TableCell>
-                  <TableCell align="center">{item.pack}</TableCell>
-                  <TableCell align="left">{item.cost}</TableCell>
-                  <TableCell align="left">{item.price}</TableCell>
-                  <TableCell align="center">{item.inStock}</TableCell>
-                  <TableCell align="center">
-                    <Button
-                      variant="contained"
-                      color="secondary"
-                      onClick={() => setSelectedItem(item)}
-                    >
-                      加入
-                    </Button>
-                  </TableCell>
-                </TableRow>
-              );
-            })}
-        </TableBody>
-      </Table>
-    </TableContainer>
+    </div>
   );
 }

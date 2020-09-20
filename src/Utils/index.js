@@ -10,9 +10,9 @@ export function csvJSON(csv) {
 
   for (let i = 1; i < lines.length; i++) {
     let obj = {};
-    let currentline = lines[i].split(",");
+    let currently = lines[i].split(",");
     for (let j = 0; j < headers.length; j++) {
-      obj[headers[j]] = currentline[j];
+      obj[headers[j]] = currently[j];
     }
     result.push(obj);
   }

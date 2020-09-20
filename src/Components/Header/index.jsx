@@ -30,7 +30,8 @@ function Header(props) {
           onClose={handleClose}
         >
           <MenuItem onClick={handleClose}>
-            <Link to="/stock">{t("item.title")}</Link>
+            {t("item.title")}
+            {/* <Link to="/stock">{t("item.title")}</Link> */}
           </MenuItem>
           <MenuItem onClick={handleClose}>
             <Link to="/member">{t("member.title")}</Link>
