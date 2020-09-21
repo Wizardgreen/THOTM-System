@@ -1,4 +1,5 @@
 import React from "react";
+import PropTypes from "prop-types";
 import MaterialTable from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";
 import TableCell from "@material-ui/core/TableCell";
@@ -32,6 +33,9 @@ export default function Table({ header = [], data = [] }) {
             {t(head.btnText)}
           </Button>
         );
+        break;
+      default:
+        return null;
     }
 
     return content === null ? null : (
@@ -42,7 +46,7 @@ export default function Table({ header = [], data = [] }) {
   };
   return (
     <TableContainer style={{ marginTop: 40 }} component={Paper}>
-      <MaterialTable size="small">
+      <MaterialTable size="small" stickyHeader>
         <TableHead>
           <TableRow>
             {header.map((head) => (
@@ -59,7 +63,7 @@ export default function Table({ header = [], data = [] }) {
         <TableBody>
           {data.map((item) => {
             return (
-              <TableRow key={item.id}>
+              <TableRow hover key={item.id}>
                 {header.map((head) => renderCell(head, item))}
               </TableRow>
             );
@@ -69,3 +73,15 @@ export default function Table({ header = [], data = [] }) {
     </TableContainer>
   );
 }
+
+Table.propTypes = {
+  header: PropTypes.arrayOf(
+    PropTypes.shape({
+      name: PropTypes.string.isRequired,
+      label: PropTypes.string,
+      type: PropTypes.oneOf(Object.values(CellType)).isRequired,
+      width: PropTypes.number,
+    })
+  ),
+  data: PropTypes.array,
+};
