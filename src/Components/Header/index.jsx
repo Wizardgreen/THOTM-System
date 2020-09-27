@@ -34,7 +34,7 @@ function Header(props) {
             {/* <Link to="/stock">{t("item.title")}</Link> */}
           </MenuItem>
           <MenuItem onClick={handleClose}>
-            <Link to="/member">{t("member.title")}</Link>
+            <Link to="/member">{t("member.member")}</Link>
           </MenuItem>
         </Menu>
       </Toolbar>

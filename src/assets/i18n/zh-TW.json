@@ -11,7 +11,7 @@
     "buyer": "訂購人"
   },
   "member": {
-    "title": "會員",
+    "member": "會員",
     "name": "本名",
     "nickname": "暱稱",
     "id": "內環編號",
@@ -25,6 +25,7 @@
     "storage": "櫃位",
     "programExpiryDate": "方案到期日",
     "note": "備註",
-    "hasCard": "是否領取會員卡"
+    "hasCard": "是否領取會員卡",
+    "newMember": "新增{{member.member}}"
   }
 }
