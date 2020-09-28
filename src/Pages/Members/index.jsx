@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import PageWrapper from "Components/PageWrapper";
 import Table, { CellType } from "Components/Table";
 import Dialog from "Components/Dialog";
+import Form from "Components/Form";
 import { useSelector } from "react-redux";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
@@ -15,7 +16,7 @@ const StyledFAB = styled(Fab)({
 });
 
 export default function Members() {
-  const [isDialogOpen, setDialog] = useState(false);
+  const [isDialogOpen, setDialog] = useState(true);
   const memberList = useSelector((state) => {
     const { member } = state.firebase.data;
     return member ? Object.values(member) : [];
@@ -34,6 +35,8 @@ export default function Members() {
     "note",
   ].map((name) => ({ name, label: `member.${name}`, type: CellType.Text }));
 
+  const formSetting = [{ key: "name", type: "text" }];
+
   return (
     <PageWrapper name="members">
       <Table header={tableHeader} data={memberList} />
@@ -51,7 +54,7 @@ export default function Members() {
         open={isDialogOpen}
         onClose={() => setDialog(false)}
       >
-        123
+        <Form setting={formSetting} />
       </Dialog>
     </PageWrapper>
   );
