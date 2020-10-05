@@ -15,17 +15,6 @@ const theme = createMuiTheme({
     primary: blue,
     secondary: pink,
     type: "dark",
-    // primary: {
-    //   light: "#4a624f",
-    //   main: "#213827",
-    //   dark: "#001300",
-    // },
-    // secondary: {
-    //   light: "#ffcf87",
-    //   main: "#d79e59",
-    //   dark: "#a3702d",
-    // },
-    // error: red,
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },

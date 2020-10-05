@@ -1,4 +1,8 @@
 {
+  "member": "member",
+  "create": "create",
+  "confirm": "Confirm",
+  "cancel": "Cancel",
   "item": {
     "title": "Stock",
     "name": "Name",
@@ -10,21 +14,18 @@
     "quantity": "Quantity",
     "buyer": "buyer"
   },
-  "member": {
-    "title": "Member",
-    "name": "Name",
-    "nickname": "Nickname",
-    "id": "ID",
-    "joinDate": "Join Date",
-    "birthday": "Birth Date",
-    "city": "City",
-    "lineId": "Line ID",
-    "phone": "Phone",
-    "email": "Email",
-    "program": "Program",
-    "storage": "Storage ID",
-    "programExpiryDate": "Program Expiry Date",
-    "note": "Note",
-    "hasCard": "Has Card"
-  }
+  "name": "Name",
+  "nickname": "Nickname",
+  "id": "ID",
+  "joinDate": "Join Date",
+  "birthday": "Birth Date",
+  "city": "City",
+  "lineId": "Line ID",
+  "phone": "Phone",
+  "email": "Email",
+  "program": "Program",
+  "storage": "Storage ID",
+  "programExpiryDate": "Program Expiry Date",
+  "note": "Note",
+  "hasCard": "Has Card"
 }

@@ -1,4 +1,8 @@
 {
+  "member": "會員",
+  "create": "建立",
+  "confirm": "確認",
+  "cancel": "取消",
   "item": {
     "title": "庫存",
     "name": "品名",
@@ -10,22 +14,18 @@
     "quantity": "訂購數",
     "buyer": "訂購人"
   },
-  "member": {
-    "member": "會員",
-    "name": "本名",
-    "nickname": "暱稱",
-    "id": "內環編號",
-    "joinDate": "入會日期",
-    "birthday": "出生日",
-    "city": "現居住地",
-    "lineId": "Line ID",
-    "phone": "電話",
-    "email": "Email",
-    "program": "方案",
-    "storage": "櫃位",
-    "programExpiryDate": "方案到期日",
-    "note": "備註",
-    "hasCard": "是否領取會員卡",
-    "newMember": "新增{{member.member}}"
-  }
+  "name": "本名",
+  "nickname": "暱稱",
+  "id": "內環編號",
+  "joinDate": "入會日期",
+  "birthday": "出生日",
+  "city": "現居住地",
+  "lineId": "Line ID",
+  "phone": "電話",
+  "email": "Email",
+  "program": "方案",
+  "storage": "櫃位",
+  "programExpiryDate": "方案到期日",
+  "note": "備註",
+  "hasCard": "是否領取會員卡"
 }

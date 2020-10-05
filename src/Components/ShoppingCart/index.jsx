@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import Badge from "@material-ui/core/Badge";
 import IconButton from "@material-ui/core/IconButton";
 import ShoppingCartIcon from "@material-ui/icons/ShoppingCart";
-import Modal from "Components/Modal";
+import Modal from "components/Modal";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import CartList from "./CartList";

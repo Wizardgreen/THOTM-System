@@ -5,7 +5,7 @@ import DialogActions from "@material-ui/core/DialogActions";
 import DialogContent from "@material-ui/core/DialogContent";
 import DialogContentText from "@material-ui/core/DialogContentText";
 import MaterialDialog from "@material-ui/core/Dialog";
-import { useTranslation } from "react-i18next";
+import useI18n from "utils/useI18n";
 
 export default function Dialog({
   title = "",
@@ -16,7 +16,7 @@ export default function Dialog({
   scroll = "paper",
   children = null,
 }) {
-  const { t } = useTranslation();
+  const i18nTitle = useI18n(title);
   return (
     <MaterialDialog
       open={open}
@@ -24,7 +24,7 @@ export default function Dialog({
       scroll={scroll}
       fullScreen={fullScreen}
     >
-      {title && <DialogTitle>{t(title)}</DialogTitle>}
+      {title && <DialogTitle>{i18nTitle}</DialogTitle>}
       <DialogContent>
         <DialogContentText>{text}</DialogContentText>
         {children}
@@ -35,7 +35,10 @@ export default function Dialog({
 }
 
 Dialog.propTypes = {
-  title: PropTypes.string,
+  title: PropTypes.oneOfType([
+    PropTypes.string,
+    PropTypes.arrayOf(PropTypes.string),
+  ]),
   text: PropTypes.string,
   onClose: PropTypes.func.isRequired,
   open: PropTypes.bool.isRequired,

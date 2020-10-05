@@ -1,5 +1,5 @@
 import React from "react";
-import PropType from "prop-types";
+import PropTypes from "prop-types";
 import Paper from "@material-ui/core/Paper";
 import { styled } from "@material-ui/core/styles";
 
@@ -17,6 +17,6 @@ export default function PageWrapper({ name = "", children }) {
 }
 
 PageWrapper.propTypes = {
-  name: PropType.string.isRequired,
-  children: PropType.element.isRequired,
+  name: PropTypes.string.isRequired,
+  children: PropTypes.node.isRequired,
 };

@@ -1,41 +1,51 @@
-const path = require("path");
-const fs = require("fs");
-const csv = require("csv-parser");
-const results = [];
+// // const path = require("path");
+// // const fs = require("fs");
+// // const csv = require("csv-parser");
+// // const results = [];
 
-function csvJSON(csv) {
-  let lines = csv.split("\n");
-  const result = [];
-  const headers = lines[0].split(",");
+// // function csvJSON(csv) {
+// //   let lines = csv.split("\n");
+// //   const result = [];
+// //   const headers = lines[0].split(",");
 
-  for (let i = 1; i < lines.length; i++) {
-    let obj = {};
-    let currentline = lines[i].split(",");
-    for (let j = 0; j < headers.length; j++) {
-      obj[headers[j]] = currentline[j];
-    }
-    result.push(obj);
-  }
+// //   for (let i = 1; i < lines.length; i++) {
+// //     let obj = {};
+// //     let currentline = lines[i].split(",");
+// //     for (let j = 0; j < headers.length; j++) {
+// //       obj[headers[j]] = currentline[j];
+// //     }
+// //     result.push(obj);
+// //   }
 
-  return JSON.stringify(result); //JSON
-}
+// //   return JSON.stringify(result); //JSON
+// // }
 
-const absolutePath = path.join(__dirname, "src/assets/B.csv");
+// // const absolutePath = path.join(__dirname, "src/assets/B.csv");
 
-fs.createReadStream(absolutePath)
-  .pipe(csv())
-  .on("data", (data) => results.push(data))
-  .on("end", () => {
-    console.log(JSON.stringify(results));
+// // fs.createReadStream(absolutePath)
+// //   .pipe(csv())
+// //   .on("data", (data) => results.push(data))
+// //   .on("end", () => {
+// //     console.log(JSON.stringify(results));
 
-    // typeof results
-    // results.filter(({ Category }) => {
-    //   return Category.slice(0, 6) === "Greene";
-    // })
-  });
+// //     // typeof results
+// //     // results.filter(({ Category }) => {
+// //     //   return Category.slice(0, 6) === "Greene";
+// //     // })
+// //   });
 
-// csv -> js data
-// map((info) => ({
+// // // csv -> js data
+
+// const program = [
+//   { label: "丘主", value: "HL" },
+//   { label: "有志之士", value: "MA" },
+//   { label: "戰地元帥", value: "FM" },
+//   { label: "禁軍統領", value: "GG" },
+//   { label: "菁英指揮官", value: "EC" },
+//   { label: "見習指揮官", value: "OC" },
+//   { label: "游擊隊指揮官", value: "GO" },
+// ];
+// .map((info) => ({
 //   birthday: info.出生日,
 //   email: info.Email,
 //   expiryDate: info.方案到期日,
@@ -48,9 +58,11 @@ fs.createReadStream(absolutePath)
 //   name: info.姓名,
 //   nickname: info.暱稱,
 //   note: info.備註,
-//   phone: info.電話,
+//   phone: info.電話 ? info.電話.slice(1) : "",
 //   storage: info.櫃位,
-//   program: info.月繳方案,
+//   program: program.find(({ label }) => {
+//     return label === info.月繳方案;
+//   }).value,
 //   game: {
 //     wh40k: info["戰鎚 40K"],
 //     killteam: info.殺戮小隊,
@@ -63,4 +75,4 @@ fs.createReadStream(absolutePath)
 //     monsterPocalypse: info.巨獸啟示錄,
 //     warMachineAndHordes: info["戰爭機器&部落"],
 //   },
-// }))
+// }));

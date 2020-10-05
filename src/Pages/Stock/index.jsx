@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table, { CellType } from "Components/Table";
+import Table, { CellType } from "components/Table";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import OrderModal from "./OrderModal";
