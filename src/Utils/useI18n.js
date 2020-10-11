@@ -1,3 +1,4 @@
+import { isNull } from "lodash";
 import { useTranslation } from "react-i18next";
 import { isArray, isString, isPlainObject, isEmpty, mapValues } from "./lodash";
 /**
@@ -19,4 +20,5 @@ export default function useI18n(args) {
   if (isArray(args)) return formatArray(args, t);
   if (isString(args)) return formatString(args, t);
   if (isPlainObject(args) && !isEmpty(args)) return formatObject(args, t);
+  return null;
 }

@@ -10,7 +10,7 @@ import Paper from "@material-ui/core/Paper";
 import Button from "@material-ui/core/Button";
 import { useTranslation } from "react-i18next";
 
-export const CellType = {
+export const Cell = {
   Text: "text",
   Button: "btn",
 };
@@ -20,10 +20,10 @@ export default function Table({ header = [], data = [] }) {
   const renderCell = (head, cell) => {
     let content = null;
     switch (head.type) {
-      case CellType.Text:
+      case Cell.Text:
         content = cell[head.name];
         break;
-      case CellType.Button:
+      case Cell.Button:
         content = (
           <Button
             variant="contained"
@@ -79,7 +79,7 @@ Table.propTypes = {
     PropTypes.shape({
       name: PropTypes.string.isRequired,
       label: PropTypes.string,
-      type: PropTypes.oneOf(Object.values(CellType)).isRequired,
+      type: PropTypes.oneOf(Object.values(Cell)).isRequired,
       width: PropTypes.number,
     })
   ),

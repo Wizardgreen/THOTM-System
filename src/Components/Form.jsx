@@ -10,7 +10,7 @@ import { makeStyles } from "@material-ui/core/styles";
 import useI18n from "utils/useI18n";
 import { chain } from "utils/lodash";
 
-export const fieldType = {
+export const Field = {
   Text: "text",
   Select: "select",
   Textarea: "textarea",
@@ -43,17 +43,17 @@ const createInitVal = (setting = []) => {
       field.default ||
       (() => {
         switch (field.type) {
-          case fieldType.Text:
-          case fieldType.Textarea:
-          case fieldType.Select:
+          case Field.Text:
+          case Field.Textarea:
+          case Field.Select:
             return "";
-          case fieldType.Date:
+          case Field.Date:
             return null;
-          case fieldType.Checkbox:
-          case fieldType.Switch:
+          case Field.Checkbox:
+          case Field.Switch:
             return false;
           default:
-            return new Error(fieldType.type, "not exist,or no type");
+            return new Error(Field.type, "not exist,or no type");
         }
       })();
     return { ...acc, [field.key]: defaultVal };
@@ -67,19 +67,19 @@ const renderField = ({
   dataCache,
   onFieldChange = () => {},
 }) => {
-  const fieldList = setting.map(({ type, key, fullWidth, option }) => {
+  const fieldList = setting.map(({ label, type, key, fullWidth, option }) => {
     switch (type) {
-      case fieldType.Text:
+      case Field.Text:
         return (
           <TextField
             onChange={(value) => onFieldChange(value, key)}
             value={dataCache[key]}
-            label={i18n[key]}
+            label={label}
             fullWidth={fullWidth || true}
             key={key}
           />
         );
-      case fieldType.Select:
+      case Field.Select:
         return (
           <Select
             onChange={(value) => onFieldChange(value, key)}
@@ -90,9 +90,9 @@ const renderField = ({
             key={key}
           />
         );
-      // case fieldType.Radio:
+      // case Field.Radio:
       //   return;
-      case fieldType.Switch:
+      case Field.Switch:
         return (
           <Switch
             onChange={(value) => onFieldChange(value, key)}
@@ -101,7 +101,7 @@ const renderField = ({
             key={key}
           />
         );
-      case fieldType.Checkbox:
+      case Field.Checkbox:
         return (
           <Checkbox
             onChange={(value) => onFieldChange(value, key)}
@@ -110,7 +110,7 @@ const renderField = ({
             key={key}
           />
         );
-      case fieldType.Date:
+      case Field.Date:
         return (
           <DatePicker
             onChange={(value) => onFieldChange(value, key)}
@@ -120,7 +120,7 @@ const renderField = ({
             key={key}
           />
         );
-      case fieldType.Textarea:
+      case Field.Textarea:
         return (
           <TextField
             onChange={(value) => onFieldChange(value, key)}

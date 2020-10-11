@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import Table, { CellType } from "components/Table";
+import Table, { Cell } from "components/Table";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import OrderModal from "./OrderModal";
@@ -11,15 +11,15 @@ export default function Stock() {
   const fetchedItemList = useSelector((state) => state.firebase.data.stock);
   const fetchedMemberList = useSelector((state) => state.firebase.data.member);
   const tableHeader = [
-    { name: "name", label: "item.name", type: CellType.Text, width: 400 },
-    { name: "sku", label: "SKU", type: CellType.Text, width: 100 },
-    { name: "pack", label: "item.pack", type: CellType.Text, width: 70 },
-    { name: "cost", label: "item.cost", type: CellType.Text, width: 100 },
-    { name: "price", label: "item.price", type: CellType.Text, width: 100 },
-    { name: "inStock", label: "item.inStock", type: CellType.Text, width: 70 },
+    { name: "name", label: "item.name", type: Cell.Text, width: 400 },
+    { name: "sku", label: "SKU", type: Cell.Text, width: 100 },
+    { name: "pack", label: "item.pack", type: Cell.Text, width: 70 },
+    { name: "cost", label: "item.cost", type: Cell.Text, width: 100 },
+    { name: "price", label: "item.price", type: Cell.Text, width: 100 },
+    { name: "inStock", label: "item.inStock", type: Cell.Text, width: 70 },
     {
       name: "none",
-      type: CellType.Button,
+      type: Cell.Button,
       btnText: "加入",
       func: (cell) => setSelectedItem(cell),
     },

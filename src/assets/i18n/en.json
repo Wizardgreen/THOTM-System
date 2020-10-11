@@ -14,8 +14,9 @@
     "quantity": "Quantity",
     "buyer": "buyer"
   },
-  "name": "Name",
-  "nickname": "Nickname",
+  "name": "name",
+  "password": "password",
+  "nickname": "nickname",
   "id": "ID",
   "joinDate": "Join Date",
   "birthday": "Birth Date",
@@ -27,5 +28,6 @@
   "storage": "Storage ID",
   "programExpiryDate": "Program Expiry Date",
   "note": "Note",
-  "hasCard": "Has Card"
+  "hasCard": "Has Card",
+  "login": "login"
 }

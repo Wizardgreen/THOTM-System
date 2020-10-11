@@ -3,8 +3,8 @@ import { useSelector } from "react-redux";
 import { useFirebase } from "react-redux-firebase";
 import PageWrapper from "components/PageWrapper";
 import Dialog from "components/Dialog";
-import Table, { CellType } from "components/Table";
-import Form, { fieldType } from "components/Form";
+import Table, { Cell } from "components/Table";
+import Form, { Field } from "components/Form";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "components/Tooltip";
@@ -58,35 +58,35 @@ const tableHeader = [
   "note",
 ].map((name) => {
   if (name === "program") {
-    return { name, label: name, type: CellType.Text, mapping: program };
+    return { name, label: name, type: Cell.Text, mapping: program };
   }
-  return { name, label: name, type: CellType.Text };
+  return { name, label: name, type: Cell.Text };
 });
 
 const formSetting = [
-  { key: "name", type: fieldType.Text, label: "name" },
-  { key: "nickname", type: fieldType.Text, label: "nickname" },
-  { key: "birthday", type: fieldType.Date, label: "birthday" },
-  { key: "city", type: fieldType.Text, label: "city" },
-  { key: "lineId", type: fieldType.Text, label: "lineId" },
-  { key: "phone", type: fieldType.Text, label: "phone" },
-  { key: "email", type: fieldType.Text, fullWidth: true, label: "email" },
+  { key: "name", type: Field.Text, label: "name" },
+  { key: "nickname", type: Field.Text, label: "nickname" },
+  { key: "birthday", type: Field.Date, label: "birthday" },
+  { key: "city", type: Field.Text, label: "city" },
+  { key: "lineId", type: Field.Text, label: "lineId" },
+  { key: "phone", type: Field.Text, label: "phone" },
+  { key: "email", type: Field.Text, fullWidth: true, label: "email" },
   {
     key: "program",
-    type: fieldType.Select,
+    type: Field.Select,
     label: "program",
     option: program,
     default: "GO",
   },
   {
     key: "joinDate",
-    type: fieldType.Date,
+    type: Field.Date,
     default: new Date(),
     label: "joinDate",
   },
   {
     key: "hasCard",
-    type: fieldType.Checkbox,
+    type: Field.Checkbox,
     label: "hasCard",
   },
 ];

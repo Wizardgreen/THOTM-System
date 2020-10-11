@@ -8,9 +8,9 @@ const StyledPaper = styled(Paper)({
   marginBottom: "50px",
 });
 
-export default function PageWrapper({ name = "", children }) {
+export default function PageWrapper({ name = "", children, className = "" }) {
   return (
-    <StyledPaper className={`${name}-page`} elevation={3}>
+    <StyledPaper className={`${name}-page ${className}`} elevation={3}>
       {children}
     </StyledPaper>
   );
