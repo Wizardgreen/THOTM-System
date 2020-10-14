@@ -8,6 +8,7 @@ import Form, { Field } from "components/Form";
 import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import Tooltip from "components/Tooltip";
+import program from "assets/maps/program";
 import { styled } from "@material-ui/core/styles";
 import { format } from "utils/date";
 
@@ -36,16 +37,6 @@ const userStructure = {
   storage: "",
 };
 
-const program = [
-  { label: "丘主", value: "HL" },
-  { label: "有志之士", value: "MA" },
-  { label: "戰地元帥", value: "FM" },
-  { label: "禁軍統領", value: "GG" },
-  { label: "菁英指揮官", value: "EC" },
-  { label: "見習指揮官", value: "OC" },
-  { label: "游擊隊指揮官", value: "GO" },
-];
-
 const tableHeader = [
   "id",
   "name",
@@ -58,7 +49,7 @@ const tableHeader = [
   "note",
 ].map((name) => {
   if (name === "program") {
-    return { name, label: name, type: Cell.Text, mapping: program };
+    return { name, label: name, type: Cell.Text, map: program };
   }
   return { name, label: name, type: Cell.Text };
 });
@@ -75,7 +66,7 @@ const formSetting = [
     key: "program",
     type: Field.Select,
     label: "program",
-    option: program,
+    option: Array.from(program.values()),
     default: "GO",
   },
   {
@@ -120,7 +111,7 @@ export default function Members() {
   const title = ["create", "member"];
   return (
     <PageWrapper name="members">
-      <Table header={tableHeader} data={memberList} />
+      <Table header={tableHeader} dataList={memberList} />
       <Tooltip title={title} placement="top">
         <StyledFAB
           onClick={() => setDialog(true)}

@@ -17,6 +17,7 @@ export default function Router() {
   return (
     <BrowserRouter>
       <Header />
+      <LinearProgress />
       <Container>
         {isLoaded(auth) && isEmpty(auth) && (
           <Switch>
@@ -25,16 +26,11 @@ export default function Router() {
           </Switch>
         )}
         {isLoaded(auth) && isEmpty(auth) === false && (
-          <>
-            {/* <ShoppingCart /> */}
-            <LinearProgress />
-
-            <Switch>
-              <Route path="/stock" component={Pages.Stock} />
-              <Route path="/members" component={Pages.Members} />
-              <Route path="/" component={Pages.Members} />
-            </Switch>
-          </>
+          <Switch>
+            <Route path="/stock" component={Pages.Stock} />
+            <Route path="/members" component={Pages.Members} />
+            <Route path="/" component={Pages.Members} />
+          </Switch>
         )}
       </Container>
     </BrowserRouter>

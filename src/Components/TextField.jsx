@@ -10,6 +10,7 @@ export default function TextField({
   multiline = false,
   fullWidth = false,
   variant = "standard",
+  type,
 }) {
   const i18nLabel = useI18n(label);
   const textChange = (event) => onChange(event.target.value);
@@ -32,4 +33,5 @@ TextField.propTypes = {
   fullWidth: PropTypes.bool,
   multiline: PropTypes.bool,
   variant: PropTypes.oneOf(["standard", "filled", "outlined"]),
+  type: PropTypes.string,
 };
