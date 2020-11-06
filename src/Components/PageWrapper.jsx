@@ -5,6 +5,7 @@ import { styled } from "@material-ui/core/styles";
 
 const StyledPaper = styled(Paper)({
   position: "relative",
+  marginTop: "50px",
   marginBottom: "50px",
 });
 

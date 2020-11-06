@@ -7,12 +7,15 @@ import TableHead from "@material-ui/core/TableHead";
 import TableRow from "@material-ui/core/TableRow";
 import Paper from "@material-ui/core/Paper";
 import Button from "components/Button";
+import Link from "components/Link";
 import TableCell from "./TableCell";
 import mapping from "utils/mapping";
+import { isFunction } from "utils/lodash";
 
 export const Cell = {
   Text: "text",
   Button: "btn",
+  Link: "link",
 };
 
 const renderCell = (head, data) => {
@@ -26,12 +29,20 @@ const renderCell = (head, data) => {
     case Cell.Button:
       content = (
         <Button
-          variant="contained"
+          variant="outlined"
           color="secondary"
           onClick={() => head.func(data)}
         >
-          {head.btnText}
+          {head.label}
         </Button>
+      );
+      break;
+    case Cell.Link:
+      content = (
+        <Link
+          text={head.text}
+          path={isFunction(head.path) ? head.path(data) : head.path}
+        />
       );
       break;
     default:
@@ -45,10 +56,10 @@ const renderCell = (head, data) => {
   );
 };
 
-export default function Table({ header = [], dataList = [] }) {
+export function Table({ header = [], dataList = [] }) {
   return (
-    <TableContainer style={{ marginTop: 40 }} component={Paper}>
-      <MaterialTable size="small" stickyHeader>
+    <TableContainer component={Paper}>
+      <MaterialTable stickyHeader>
         <TableHead>
           <TableRow>
             {header.map((head) => (

@@ -148,7 +148,7 @@ export default function Form({
 }) {
   const classes = useStyles();
   const [dataCache, setCache] = useState(() => createInitVal(setting));
-  const [error, setError] = useState(false);
+  // const [error, setError] = useState(false);
 
   const i18n = useI18n({
     ...chain(setting).keyBy("key").mapValues("label").value(),

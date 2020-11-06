@@ -2,6 +2,7 @@ export {
   isArray,
   isString,
   isObject,
+  isFunction,
   isPlainObject,
   isEmpty,
   isMap,

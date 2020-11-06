@@ -1,8 +1,10 @@
 {
   "member": "member",
   "create": "create",
-  "confirm": "Confirm",
-  "cancel": "Cancel",
+  "confirm": "confirm",
+  "cancel": "cancel",
+  "view": "view",
+  "action": "action",
   "item": {
     "title": "Stock",
     "name": "Name",

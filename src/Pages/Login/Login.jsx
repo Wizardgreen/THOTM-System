@@ -37,7 +37,8 @@ const useStyles = makeStyles((theme) => ({
   //   height: "56px",
   // },
 }));
-export default function Login() {
+
+export function Login() {
   const classes = useStyles();
   const firebase = useFirebase();
   // const auth = useSelector((state) => state.firebase.auth);

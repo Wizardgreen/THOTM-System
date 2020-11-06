@@ -4,7 +4,7 @@ import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";
 import OrderModal from "./OrderModal";
 
-export default function Stock() {
+export function Stock() {
   const [itemList, setItemList] = useState([]);
   const [memberList, setMemberList] = useState([]);
   const [selectedItem, setSelectedItem] = useState(null);
