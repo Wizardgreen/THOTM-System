@@ -24,8 +24,16 @@ const useStyles = makeStyles((theme) => ({
   root: {
     "& > .MuiTextField-root,& > .MuiFormGroup-root": {
       margin: theme.spacing(1),
-      // width: "450px",
     },
+  },
+  "cellSize-1": {
+    width: "100px",
+  },
+  "cellSize-2": {
+    width: "200px",
+  },
+  "cellSize-3": {
+    width: "300px",
   },
   btnWrapper: {
     display: "flex",
@@ -61,94 +69,20 @@ const createInitVal = (setting = []) => {
   return initVal;
 };
 
-const renderField = ({
-  setting = [],
-  i18n = {},
-  dataCache,
-  onFieldChange = () => {},
-}) => {
-  const fieldList = setting.map(({ label, type, key, fullWidth, option }) => {
-    switch (type) {
-      case Field.Text:
-        return (
-          <TextField
-            onChange={(value) => onFieldChange(value, key)}
-            value={dataCache[key]}
-            label={label}
-            fullWidth={fullWidth || true}
-            key={key}
-          />
-        );
-      case Field.Select:
-        return (
-          <Select
-            onChange={(value) => onFieldChange(value, key)}
-            value={dataCache[key]}
-            option={option}
-            label={i18n[key]}
-            fullWidth={fullWidth || true}
-            key={key}
-          />
-        );
-      // case Field.Radio:
-      //   return;
-      case Field.Switch:
-        return (
-          <Switch
-            onChange={(value) => onFieldChange(value, key)}
-            checked={dataCache[key]}
-            label={i18n[key]}
-            key={key}
-          />
-        );
-      case Field.Checkbox:
-        return (
-          <Checkbox
-            onChange={(value) => onFieldChange(value, key)}
-            checked={dataCache[key]}
-            label={i18n[key]}
-            key={key}
-          />
-        );
-      case Field.Date:
-        return (
-          <DatePicker
-            onChange={(value) => onFieldChange(value, key)}
-            value={dataCache[key]}
-            label={i18n[key]}
-            fullWidth={fullWidth || true}
-            key={key}
-          />
-        );
-      case Field.Textarea:
-        return (
-          <TextField
-            onChange={(value) => onFieldChange(value, key)}
-            value={dataCache[key]}
-            label={i18n[key]}
-            fullWidth={fullWidth || false}
-            multiline
-            key={key}
-          />
-        );
-      default:
-        return null;
-    }
-  });
-  return fieldList;
-};
-
 export default function Form({
+  className,
   setting = [],
   disableBtn = false,
   onConfirm = null,
   confirmBtnText = "confirm",
   onCancel = null,
   cancelBtnText = "cancel",
+  defaultData = null,
 }) {
   const classes = useStyles();
-  const [dataCache, setCache] = useState(() => createInitVal(setting));
-  // const [error, setError] = useState(false);
+  const [dataCache, setCache] = useState(() =>
+    defaultData ? defaultData : createInitVal(setting)
+  );
 
   const i18n = useI18n({
     ...chain(setting).keyBy("key").mapValues("label").value(),
@@ -166,9 +100,88 @@ export default function Form({
     onCancel(dataCache);
   };
 
+  const renderField = () => {
+    const fieldList = setting.map(
+      ({ label, type, key, fullWidth = false, option, cellSize = null }) => {
+        const passingClass = cellSize ? classes[`cellSize-${cellSize}`] : "";
+        switch (type) {
+          case Field.Text:
+            return (
+              <TextField
+                passingClass={passingClass}
+                onChange={(value) => onFieldChange(value, key)}
+                value={dataCache[key]}
+                label={label}
+                fullWidth={fullWidth}
+                key={key}
+              />
+            );
+          case Field.Select:
+            return (
+              <Select
+                passingClass={passingClass}
+                onChange={(value) => onFieldChange(value, key)}
+                value={dataCache[key]}
+                option={option}
+                label={i18n[key]}
+                fullWidth={fullWidth}
+                key={key}
+              />
+            );
+          // case Field.Radio:
+          //   return;
+          case Field.Switch:
+            return (
+              <Switch
+                onChange={(value) => onFieldChange(value, key)}
+                checked={dataCache[key]}
+                label={i18n[key]}
+                key={key}
+              />
+            );
+          case Field.Checkbox:
+            return (
+              <Checkbox
+                onChange={(value) => onFieldChange(value, key)}
+                checked={dataCache[key]}
+                label={i18n[key]}
+                key={key}
+              />
+            );
+          case Field.Date:
+            return (
+              <DatePicker
+                passingClass={passingClass}
+                onChange={(value) => onFieldChange(value, key)}
+                value={dataCache[key]}
+                label={i18n[key]}
+                fullWidth={fullWidth}
+                key={key}
+              />
+            );
+          case Field.Textarea:
+            return (
+              <TextField
+                passingClass={passingClass}
+                onChange={(value) => onFieldChange(value, key)}
+                value={dataCache[key]}
+                label={i18n[key]}
+                fullWidth={fullWidth || false}
+                multiline
+                key={key}
+              />
+            );
+          default:
+            return null;
+        }
+      }
+    );
+    return fieldList;
+  };
+
   return (
-    <form className={classes.root}>
-      {renderField({ setting, i18n, dataCache, onFieldChange })}
+    <form className={`${classes.root} ${className}`}>
+      {renderField()}
       {disableBtn === false && (
         <div className={classes.btnWrapper}>
           {onCancel && (

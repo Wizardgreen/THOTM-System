@@ -1,19 +1,26 @@
 import React from "react";
 import PropTypes from "prop-types";
 import Paper from "@material-ui/core/Paper";
-import { styled } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
-const StyledPaper = styled(Paper)({
-  position: "relative",
-  marginTop: "50px",
-  marginBottom: "50px",
+const useStyle = makeStyles((theme) => {
+  return {
+    wrapper: {
+      position: "relative",
+      minHeight: "100%",
+    },
+  };
 });
 
 export default function PageWrapper({ name = "", children, className = "" }) {
+  const classes = useStyle();
   return (
-    <StyledPaper className={`${name}-page ${className}`} elevation={3}>
+    <Paper
+      className={`${name}-page ${className} ${classes.wrapper}`}
+      elevation={3}
+    >
       {children}
-    </StyledPaper>
+    </Paper>
   );
 }
 

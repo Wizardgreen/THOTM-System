@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-function Header(props) {
+function Header({ className }) {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -19,7 +19,7 @@ function Header(props) {
   };
 
   return (
-    <AppBar position="static">
+    <AppBar className={className} position="static">
       <Toolbar>
         <Button onClick={handleClick}>Menu</Button>
         <Menu

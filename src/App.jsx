@@ -9,6 +9,7 @@ import firebase from "./config/firebase";
 import rrfConfig from "./config/reactReduxFirebase";
 import "./assets/i18n";
 import { blue, pink } from "@material-ui/core/colors";
+import "assets/global.css";
 
 const theme = createMuiTheme({
   palette: {
@@ -18,6 +19,7 @@ const theme = createMuiTheme({
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },
+  headerHeight: "64px",
 });
 
 const rrfProps = {
@@ -30,7 +32,7 @@ function App() {
   return (
     <ThemeProvider theme={theme}>
       <CssBaseline />
-      <main className="App">
+      <main id="app">
         <ReduxProvider store={store}>
           <ReactReduxFirebaseProvider {...rrfProps}>
             <Router />

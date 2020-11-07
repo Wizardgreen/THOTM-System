@@ -4,6 +4,7 @@ import MenuItem from "@material-ui/core/MenuItem";
 import TextField from "@material-ui/core/TextField";
 
 export default function Select({
+  passingClass,
   option = [],
   label,
   value,
@@ -13,6 +14,7 @@ export default function Select({
   const selectChange = (event) => onChange(event.target.value);
   return (
     <TextField
+      className={passingClass}
       label={label}
       value={value}
       onChange={selectChange}

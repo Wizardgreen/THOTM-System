@@ -7,15 +7,32 @@ import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
 import Header from "./components/Header";
 // import ShoppingCart from "./Components/ShoppingCart";
 import Pages from "./pages";
+import { makeStyles } from "@material-ui/styles";
+
+const useStyle = makeStyles((theme) => {
+  const { headerHeight, spacing } = theme;
+  return {
+    header: {
+      height: headerHeight,
+    },
+    container: {
+      // height: `calc(100% - ${headerHeight})`,
+      // padding: `${spacing(3)}px ${spacing(3)}px 0 ${spacing(3)}px`,
+      flex: 1,
+      padding: spacing(3),
+    },
+  };
+});
 
 export default function Router() {
   const auth = useSelector((state) => state.firebase.auth);
+  const classes = useStyle();
 
   return (
     <BrowserRouter>
-      <Header />
+      <Header className={classes.header} />
       {/* <LinearProgress /> */}
-      <Container>
+      <Container id="router-container" className={classes.container}>
         {isLoaded(auth) && isEmpty(auth) && (
           <Switch>
             <Route path="/login" component={Pages.Login} />
