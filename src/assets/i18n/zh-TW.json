@@ -30,5 +30,6 @@
   "programExpiryDate": "方案到期日",
   "note": "備註",
   "hasCard": "是否領取會員卡",
-  "login": "登入"
+  "login": "登入",
+  "member-information": "會員資料"
 }

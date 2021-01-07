@@ -49,14 +49,19 @@ export const tableHeader = [
 });
 
 export const formSetting = [
-  { type: Field.Row },
   { key: "name", type: Field.Text, label: "name" },
   { key: "nickname", type: Field.Text, label: "nickname" },
   { key: "birthday", type: Field.Date, label: "birthday" },
   { key: "city", type: Field.Text, label: "city" },
   { key: "lineId", type: Field.Text, label: "lineId" },
   { key: "phone", type: Field.Text, label: "phone" },
-  { key: "email", type: Field.Text, fullWidth: true, label: "email" },
+  {
+    key: "email",
+    type: Field.Text,
+    fullWidth: true,
+    label: "email",
+    cellSize: 3,
+  },
   {
     key: "program",
     type: Field.Select,

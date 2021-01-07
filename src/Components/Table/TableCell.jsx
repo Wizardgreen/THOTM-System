@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialTableCell from "@material-ui/core/TableCell";
 import useI18n from "utils/useI18n";

@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialTable from "@material-ui/core/Table";
 import TableBody from "@material-ui/core/TableBody";

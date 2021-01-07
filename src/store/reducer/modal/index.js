@@ -1,4 +1,4 @@
-// import React from "react";
+//
 import { OPEN_MODAL, CLOSE_MODAL } from "./types";
 
 const initalState = {

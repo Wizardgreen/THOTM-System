@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialCheckbox from "@material-ui/core/Checkbox";
 import FormGroup from "@material-ui/core/FormGroup";

@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialTextField from "@material-ui/core/TextField";
 import useI18n from "utils/useI18n";

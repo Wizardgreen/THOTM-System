@@ -1,33 +1,37 @@
-import "date-fns";
-import React from "react";
-import DateFnsUtils from "@date-io/date-fns";
-import {
-  MuiPickersUtilsProvider,
-  KeyboardDatePicker,
-} from "@material-ui/pickers";
+import PropTypes from "prop-types";
+import MaterialTextField from "@material-ui/core/TextField";
 
 export default function DatePicker({
   passingClass,
+  onChange,
   value,
   label,
-  onChange,
   fullWidth,
+  key,
 }) {
+  const formatDate = value.replaceAll(".", "-", 2);
+
   return (
-    <MuiPickersUtilsProvider className={passingClass} utils={DateFnsUtils}>
-      <KeyboardDatePicker
-        className={passingClass}
-        margin="normal"
-        disableToolbar
-        format="yyyy/MM/dd"
-        label={label}
-        value={value}
-        onChange={onChange}
-        fullWidth={fullWidth}
-        KeyboardButtonProps={{
-          "aria-label": "change date",
-        }}
-      />
-    </MuiPickersUtilsProvider>
+    <MaterialTextField
+      className={passingClass}
+      id={key}
+      label={label}
+      onChange={onChange}
+      type="date"
+      fullWidth={fullWidth}
+      defaultValue={formatDate}
+      InputLabelProps={{
+        shrink: true,
+      }}
+    />
   );
 }
+
+DatePicker.propTypes = {
+  onChange: PropTypes.func.isRequired,
+  value: PropTypes.string.isRequired,
+  passingClass: PropTypes.string.isRequired,
+  label: PropTypes.string.isRequired,
+  fullWidth: PropTypes.bool,
+  key: PropTypes.string.isRequired,
+};

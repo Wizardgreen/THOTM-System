@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import Button from "@material-ui/core/Button";
 import PropTypes from "prop-types";
 import Select from "./Select";
@@ -23,17 +23,18 @@ export const Field = {
 const useStyles = makeStyles((theme) => ({
   root: {
     "& > .MuiTextField-root,& > .MuiFormGroup-root": {
-      margin: theme.spacing(1),
+      marginTop: theme.spacing(4),
+      paddingRight: theme.spacing(3),
     },
   },
   "cellSize-1": {
-    width: "100px",
-  },
-  "cellSize-2": {
     width: "200px",
   },
+  "cellSize-2": {
+    width: "400px",
+  },
   "cellSize-3": {
-    width: "300px",
+    width: "600px",
   },
   btnWrapper: {
     display: "flex",
@@ -102,7 +103,7 @@ export default function Form({
 
   const renderField = () => {
     const fieldList = setting.map(
-      ({ label, type, key, fullWidth = false, option, cellSize = null }) => {
+      ({ label, type, key, fullWidth = false, option, cellSize = 1 }) => {
         const passingClass = cellSize ? classes[`cellSize-${cellSize}`] : "";
         switch (type) {
           case Field.Text:
@@ -207,4 +208,6 @@ Form.propTypes = {
   confirmBtnText: PropTypes.string,
   onCancel: PropTypes.func,
   cancelBtnText: PropTypes.string,
+  className: PropTypes.string.isRequired,
+  defaultData: PropTypes.array,
 };

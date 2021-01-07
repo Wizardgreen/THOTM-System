@@ -1,6 +1,8 @@
-import React, { useState, useEffect } from "react";
+// import { useState, useEffect } from "react";
 import PageWrapper from "components/PageWrapper";
 import Form, { Field } from "components/Form";
+import Typography from "components/Typography";
+import useI18n from "utils/useI18n";
 import program from "assets/maps/program";
 import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
@@ -20,6 +22,7 @@ export function EditMember({ match }) {
     const data = state.member[memberId];
     return data;
   });
+  const title = useI18n("member-information");
 
   const formSetting = [
     { key: "name", type: Field.Text, label: "name", cellSize: 1 },
@@ -57,7 +60,8 @@ export function EditMember({ match }) {
   ];
 
   return (
-    <PageWrapper name="member-edit">
+    <PageWrapper name="member-edit" gap={30}>
+      <Typography variant="h4">{title}</Typography>
       <Form
         className={classes.form}
         setting={formSetting}

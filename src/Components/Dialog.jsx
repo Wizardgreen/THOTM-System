@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import DialogTitle from "@material-ui/core/DialogTitle";
 import DialogActions from "@material-ui/core/DialogActions";
@@ -15,10 +14,12 @@ export default function Dialog({
   fullScreen = false,
   scroll = "paper",
   children = null,
+  maxWidth = "sm",
 }) {
   const i18nTitle = useI18n(title);
   return (
     <MaterialDialog
+      maxWidth={maxWidth}
       open={open}
       onClose={onClose}
       scroll={scroll}

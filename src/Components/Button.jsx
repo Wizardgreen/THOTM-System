@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialButton from "@material-ui/core/Button";
 import useI18n from "utils/useI18n";
@@ -38,5 +37,8 @@ Button.propTypes = {
   variant: PropTypes.oneOf(["outlined", "contained", "text"]),
   size: PropTypes.oneOf(["small", "medium", "large"]),
   color: PropTypes.oneOf(["default", "inherit", "primary", "secondary"]),
+  href: PropTypes.string,
+  disabled: PropTypes.bool,
+  children: PropTypes.element,
   fullWidth: PropTypes.bool,
 };

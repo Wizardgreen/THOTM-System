@@ -1,4 +1,3 @@
-import React from "react";
 import CssBaseline from "@material-ui/core/CssBaseline";
 import { createMuiTheme, ThemeProvider } from "@material-ui/core/styles";
 import { Provider as ReduxProvider } from "react-redux";
@@ -19,7 +18,6 @@ const theme = createMuiTheme({
     contrastThreshold: 3,
     tonalOffset: 0.2,
   },
-  headerHeight: "64px",
 });
 
 const rrfProps = {

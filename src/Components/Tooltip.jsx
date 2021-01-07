@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialTooltip from "@material-ui/core/Tooltip";
 import useI18n from "utils/useI18n";

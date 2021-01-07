@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialSwitch from "@material-ui/core/Switch";
 import FormGroup from "@material-ui/core/FormGroup";

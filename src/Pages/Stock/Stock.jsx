@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import Table, { Cell } from "components/Table";
 import { useSelector } from "react-redux";
 import { isLoaded } from "react-redux-firebase";

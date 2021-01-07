@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import AppBar from "@material-ui/core/AppBar";
 import Toolbar from "@material-ui/core/Toolbar";
 import Button from "@material-ui/core/Button";
@@ -8,7 +8,7 @@ import { withRouter } from "react-router";
 import { Link } from "react-router-dom";
 import { useTranslation } from "react-i18next";
 
-function Header({ className }) {
+function Header() {
   const { t } = useTranslation();
   const [anchorEl, setAnchorEl] = useState(null);
   const handleClick = (event) => {
@@ -19,7 +19,7 @@ function Header({ className }) {
   };
 
   return (
-    <AppBar className={className} position="static">
+    <AppBar position="static">
       <Toolbar>
         <Button onClick={handleClick}>Menu</Button>
         <Menu

@@ -1,4 +1,3 @@
-import React from "react";
 import Container from "@material-ui/core/Container";
 // import LinearProgress from "@material-ui/core/LinearProgress";
 import { useSelector } from "react-redux";
@@ -10,16 +9,10 @@ import Pages from "./pages";
 import { makeStyles } from "@material-ui/styles";
 
 const useStyle = makeStyles((theme) => {
-  const { headerHeight, spacing } = theme;
   return {
-    header: {
-      height: headerHeight,
-    },
     container: {
-      // height: `calc(100% - ${headerHeight})`,
-      // padding: `${spacing(3)}px ${spacing(3)}px 0 ${spacing(3)}px`,
       flex: 1,
-      padding: spacing(3),
+      padding: theme.spacing(3),
     },
   };
 });
@@ -30,7 +23,7 @@ export default function Router() {
 
   return (
     <BrowserRouter>
-      <Header className={classes.header} />
+      <Header />
       {/* <LinearProgress /> */}
       <Container id="router-container" className={classes.container}>
         {isLoaded(auth) && isEmpty(auth) && (

@@ -1,4 +1,3 @@
-import React from "react";
 import PropTypes from "prop-types";
 import MaterialSpeedDialAction from "@material-ui/lab/SpeedDialAction";
 import useI18n from "utils/useI18n";

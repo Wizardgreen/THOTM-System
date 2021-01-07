@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
 import { useFirebase } from "react-redux-firebase";
 import PageWrapper from "components/PageWrapper";
@@ -81,7 +81,12 @@ export function Members() {
         onClose={closeSpeedDial}
         actions={actions}
       />
-      <Dialog title={title} open={isDialogOpen} onClose={closeDialog}>
+      <Dialog
+        title={title}
+        open={isDialogOpen}
+        onClose={closeDialog}
+        maxWidth="md"
+      >
         <Form
           setting={formSetting}
           onConfirm={createMember}
