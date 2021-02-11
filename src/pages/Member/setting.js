@@ -42,7 +42,7 @@ export const tableHeader = [
       label: name,
       type: Cell.Link,
       text: "view",
-      path: ({ id }) => `members/${id}`,
+      path: ({ id }) => `member/${id}`,
     };
   }
   return { name, label: name, type: Cell.Text };

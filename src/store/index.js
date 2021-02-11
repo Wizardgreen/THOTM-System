@@ -1,18 +1,37 @@
-import thunk from "redux-thunk";
-import { createStore, applyMiddleware, compose } from "redux";
-import { getFirebase } from "react-redux-firebase";
-import { saveState, loadState } from "utils/localStrage";
+import { configureStore, getDefaultMiddleware } from "@reduxjs/toolkit";
+import {
+  getFirebase,
+  actionTypes as rrfActionTypes,
+} from "react-redux-firebase";
+import { saveState, loadState } from "utils/localStorage";
 import rootReducer from "./reducer";
 
-const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
+const extraArgument = {
+  getFirebase,
+};
 
-const middleWares = [thunk.withExtraArgument(getFirebase)];
+const middleware = [
+  ...getDefaultMiddleware({
+    serializableCheck: {
+      ignoredActions: [
+        ...Object.keys(rrfActionTypes).map(
+          (type) => `@@reactReduxFirebase/${type}`
+        ),
+      ],
+      ignoredPaths: ["firebase"],
+    },
+    thunk: {
+      extraArgument,
+    },
+  }),
+];
 
-const store = createStore(
-  rootReducer,
-  loadState(),
-  composeEnhancers(applyMiddleware(...middleWares))
-);
+const store = configureStore({
+  reducer: rootReducer,
+  middleware,
+  devTools: process.env.NODE_ENV !== "production",
+  preloadedState: loadState(),
+});
 
 store.subscribe(() => {
   const state = store.getState();

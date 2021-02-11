@@ -9,7 +9,7 @@ import SpeedDial from "components/SpeedDial";
 import { format } from "utils/date";
 import { makeStyles } from "@material-ui/core/styles";
 import { userStructure, tableHeader, formSetting } from "./setting";
-import { getMemberList } from "store/reducer/member/actions";
+import { fetchMemberList } from "store/reducer/member";
 
 const useStyle = makeStyles((theme) => ({
   speedDial: {
@@ -19,18 +19,18 @@ const useStyle = makeStyles((theme) => ({
   },
 }));
 
-export function Members() {
+export function Member() {
   const [isSpeedDialOpen, setSpeedDial] = useState(false);
   const [isDialogOpen, setDialog] = useState(false);
   const firebase = useFirebase();
   const classes = useStyle();
   const dispatch = useDispatch();
   const memberList = useSelector(({ member }) => {
-    return member ? Object.values(member) : [];
+    return member ? Object.values(member.data) : [];
   });
 
   useEffect(() => {
-    dispatch(getMemberList());
+    dispatch(fetchMemberList());
   }, [dispatch]);
 
   const createMember = (data) => {
@@ -72,7 +72,7 @@ export function Members() {
   const title = ["create", "member"];
 
   return (
-    <PageWrapper name="members">
+    <PageWrapper name="member">
       <Table header={tableHeader} dataList={memberList} />
       <SpeedDial
         className={classes.speedDial}

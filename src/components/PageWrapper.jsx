@@ -12,7 +12,7 @@ export default function PageWrapper({
     return {
       wrapper: {
         position: "relative",
-        minHeight: "100%",
+        marginBottom: "60px",
       },
       gap: {
         padding: `${gap}px`,

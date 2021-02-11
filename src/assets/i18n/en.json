@@ -1,8 +1,11 @@
 {
+  "home": "Home",
   "member": "member",
   "create": "create",
   "confirm": "confirm",
-  "cancel": "cancel",
+  "i18n_cancel": "cancel",
+  "i18n_back": "back",
+  "i18n_submit": "submit",
   "view": "view",
   "action": "action",
   "item": {
@@ -32,5 +35,5 @@
   "note": "Note",
   "hasCard": "Has Card",
   "login": "login",
-  "member-information": "Member Information"
+  "i18n_member_information": "Member Information"
 }

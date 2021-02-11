@@ -1,5 +1,6 @@
 import PropTypes from "prop-types";
 import MaterialTextField from "@material-ui/core/TextField";
+import { format } from "utils/date";
 
 export default function DatePicker({
   passingClass,
@@ -7,16 +8,17 @@ export default function DatePicker({
   value,
   label,
   fullWidth,
-  key,
 }) {
-  const formatDate = value.replaceAll(".", "-", 2);
+  const formatDate = value ? value : format(new Date(), "yyyy-mm-dd");
+  const handleCheck = (event) => {
+    onChange(event.target.value);
+  };
 
   return (
     <MaterialTextField
       className={passingClass}
-      id={key}
       label={label}
-      onChange={onChange}
+      onChange={handleCheck}
       type="date"
       fullWidth={fullWidth}
       defaultValue={formatDate}
@@ -33,5 +35,4 @@ DatePicker.propTypes = {
   passingClass: PropTypes.string.isRequired,
   label: PropTypes.string.isRequired,
   fullWidth: PropTypes.bool,
-  key: PropTypes.string.isRequired,
 };

@@ -8,7 +8,7 @@ import Switch from "./Switch";
 import Checkbox from "./Checkbox";
 import { makeStyles } from "@material-ui/core/styles";
 import useI18n from "utils/useI18n";
-import { chain } from "utils/lodash";
+import { chain, isFunction } from "utils/lodash";
 
 export const Field = {
   Text: "text",
@@ -79,6 +79,7 @@ export default function Form({
   onCancel = null,
   cancelBtnText = "cancel",
   defaultData = null,
+  onFieldChange = null,
 }) {
   const classes = useStyles();
   const [dataCache, setCache] = useState(() =>
@@ -91,8 +92,14 @@ export default function Form({
     cancel: cancelBtnText,
   });
 
-  const onFieldChange = (value, key) => {
-    setCache((prev) => ({ ...prev, [key]: value }));
+  const handelFieldChange = (value, key) => {
+    setCache((prev) => {
+      const newCache = { ...prev, [key]: value };
+
+      if (isFunction(onFieldChange)) onFieldChange(newCache);
+
+      return newCache;
+    });
   };
   const handleConfirm = () => {
     onConfirm(dataCache);
@@ -110,7 +117,7 @@ export default function Form({
             return (
               <TextField
                 passingClass={passingClass}
-                onChange={(value) => onFieldChange(value, key)}
+                onChange={(value) => handelFieldChange(value, key)}
                 value={dataCache[key]}
                 label={label}
                 fullWidth={fullWidth}
@@ -121,7 +128,7 @@ export default function Form({
             return (
               <Select
                 passingClass={passingClass}
-                onChange={(value) => onFieldChange(value, key)}
+                onChange={(value) => handelFieldChange(value, key)}
                 value={dataCache[key]}
                 option={option}
                 label={i18n[key]}
@@ -134,7 +141,7 @@ export default function Form({
           case Field.Switch:
             return (
               <Switch
-                onChange={(value) => onFieldChange(value, key)}
+                onChange={(value) => handelFieldChange(value, key)}
                 checked={dataCache[key]}
                 label={i18n[key]}
                 key={key}
@@ -143,7 +150,7 @@ export default function Form({
           case Field.Checkbox:
             return (
               <Checkbox
-                onChange={(value) => onFieldChange(value, key)}
+                onChange={(value) => handelFieldChange(value, key)}
                 checked={dataCache[key]}
                 label={i18n[key]}
                 key={key}
@@ -153,7 +160,7 @@ export default function Form({
             return (
               <DatePicker
                 passingClass={passingClass}
-                onChange={(value) => onFieldChange(value, key)}
+                onChange={(value) => handelFieldChange(value, key)}
                 value={dataCache[key]}
                 label={i18n[key]}
                 fullWidth={fullWidth}
@@ -164,7 +171,7 @@ export default function Form({
             return (
               <TextField
                 passingClass={passingClass}
-                onChange={(value) => onFieldChange(value, key)}
+                onChange={(value) => handelFieldChange(value, key)}
                 value={dataCache[key]}
                 label={i18n[key]}
                 fullWidth={fullWidth || false}
@@ -208,6 +215,7 @@ Form.propTypes = {
   confirmBtnText: PropTypes.string,
   onCancel: PropTypes.func,
   cancelBtnText: PropTypes.string,
-  className: PropTypes.string.isRequired,
-  defaultData: PropTypes.array,
+  className: PropTypes.string,
+  defaultData: PropTypes.object,
+  onFieldChange: PropTypes.func,
 };

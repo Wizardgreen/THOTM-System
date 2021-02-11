@@ -6,8 +6,8 @@ import Router from "./Router";
 import store from "./store";
 import firebase from "./config/firebase";
 import rrfConfig from "./config/reactReduxFirebase";
-import "./assets/i18n";
 import { blue, pink } from "@material-ui/core/colors";
+import "./assets/i18n";
 import "assets/global.css";
 
 const theme = createMuiTheme({

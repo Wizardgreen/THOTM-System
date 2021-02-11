@@ -1,5 +1,0 @@
-export const GET_MEMBER_LIST = "GET_MEMBER_LIST";
-
-export const GET_MEMBER = "GET_MEMBER";
-
-export const CREATE_NEW_MEMBER = "CREATE_NEW_MEMBER";
