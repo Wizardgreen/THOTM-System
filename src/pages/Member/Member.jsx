@@ -9,7 +9,7 @@ import SpeedDial from "components/SpeedDial";
 import { format } from "utils/date";
 import { makeStyles } from "@material-ui/core/styles";
 import { userStructure, tableHeader, formSetting } from "./setting";
-import { fetchMemberList } from "store/reducer/member";
+import { fetchMemberList } from "store/slice/member";
 
 const useStyle = makeStyles((theme) => ({
   speedDial: {

@@ -14,7 +14,7 @@ import { useSelector } from "react-redux";
 import { useTranslation } from "react-i18next";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
-import { deleteOrder } from "store/reducer/shoppingCart/actions";
+import { deleteOrder } from "store/slice/shoppingCart/actions";
 import XLSX from "xlsx-style";
 
 const useStyles = makeStyles({

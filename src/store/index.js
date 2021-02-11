@@ -3,8 +3,8 @@ import {
   getFirebase,
   actionTypes as rrfActionTypes,
 } from "react-redux-firebase";
-import { saveState, loadState } from "utils/localStorage";
-import rootReducer from "./reducer";
+// import { saveState, loadState } from "utils/localStorage";
+import rootReducer from "./slice/rootReducer";
 
 const extraArgument = {
   getFirebase,
@@ -30,12 +30,12 @@ const store = configureStore({
   reducer: rootReducer,
   middleware,
   devTools: process.env.NODE_ENV !== "production",
-  preloadedState: loadState(),
+  // preloadedState: loadState(),
 });
 
-store.subscribe(() => {
-  const state = store.getState();
-  saveState({ member: state.member });
-});
+// store.subscribe(() => {
+//   const state = store.getState();
+//   saveState({ member: state.member });
+// });
 
 export default store;

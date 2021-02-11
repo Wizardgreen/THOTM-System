@@ -12,7 +12,7 @@ import Autocomplete from "@material-ui/lab/Autocomplete";
 import Modal from "components/Modal";
 import { makeStyles } from "@material-ui/core/styles";
 import { useDispatch } from "react-redux";
-import { addOrder } from "store/reducer/shoppingCart/actions";
+import { addOrder } from "store/slice/shoppingCart/actions";
 
 const useStyles = makeStyles({
   paper: {
