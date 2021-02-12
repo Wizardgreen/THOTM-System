@@ -1,15 +1,13 @@
 import { useState, useEffect } from "react";
 import { useSelector, useDispatch } from "react-redux";
-import { useFirebase } from "react-redux-firebase";
 import PageWrapper from "components/PageWrapper";
 import Dialog from "components/Dialog";
 import Table from "components/Table";
 import Form from "components/Form";
 import SpeedDial from "components/SpeedDial";
-import { format } from "utils/date";
 import { makeStyles } from "@material-ui/core/styles";
 import { userStructure, tableHeader, formSetting } from "./setting";
-import { fetchMemberList } from "store/slice/member";
+import { fetchMemberList, postNewMember } from "store/slice/member";
 
 const useStyle = makeStyles((theme) => ({
   speedDial: {
@@ -20,11 +18,10 @@ const useStyle = makeStyles((theme) => ({
 }));
 
 export function Member() {
-  const [isSpeedDialOpen, setSpeedDial] = useState(false);
-  const [isDialogOpen, setDialog] = useState(false);
-  const firebase = useFirebase();
   const classes = useStyle();
   const dispatch = useDispatch();
+  const [isSpeedDialOpen, setSpeedDial] = useState(false);
+  const [isDialogOpen, setDialog] = useState(false);
   const memberList = useSelector(({ member }) => {
     return member ? Object.values(member.data) : [];
   });
@@ -33,19 +30,21 @@ export function Member() {
     dispatch(fetchMemberList());
   }, [dispatch]);
 
-  const createMember = (data) => {
-    const newId = `IC${memberList.length + 27}`;
+  const handelMemberCreate = (data) => {
+    const memberId = `IC${memberList.length + 27}`;
     const payload = {
       ...userStructure,
       ...data,
-      id: newId,
-      joinDate: format(data.joinDate, "yyyy-MM-dd"),
-      birthday: format(data.birthday, "yyyy-MM-dd"),
+      id: memberId,
     };
 
-    firebase.set(`member/${newId}`, payload, () => {
-      closeDialog();
-    });
+    dispatch(
+      postNewMember({
+        memberId,
+        payload,
+        callback: closeDialog,
+      })
+    );
   };
 
   const openDialog = () => {
@@ -69,7 +68,7 @@ export function Member() {
     { name: "check", icon: "assignment_late", func: () => console.log("edit") },
   ];
 
-  const title = ["create", "member"];
+  const title = ["i18n_create", "i18n_member"];
 
   return (
     <PageWrapper name="member">
@@ -89,7 +88,7 @@ export function Member() {
       >
         <Form
           setting={formSetting}
-          onConfirm={createMember}
+          onConfirm={handelMemberCreate}
           onCancel={closeDialog}
         />
       </Dialog>

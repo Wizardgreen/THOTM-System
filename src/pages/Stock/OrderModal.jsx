@@ -51,7 +51,7 @@ export default function OrderModal({ open, memberList, item, onClose }) {
     dispatch(
       addOrder({
         orderId: Math.floor(Date.now() / 1000),
-        userId: searchValue.id,
+        memberId: searchValue.id,
         sku: item.sku,
         quantity,
       })

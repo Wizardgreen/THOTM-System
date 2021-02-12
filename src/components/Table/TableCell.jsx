@@ -1,12 +1,13 @@
 import PropTypes from "prop-types";
 import MaterialTableCell from "@material-ui/core/TableCell";
-import useI18n from "utils/useI18n";
+import { useTranslation } from "react-i18next";
 
 export default function TableCell({ align, style, children }) {
-  const i18nText = useI18n(typeof children === "string" ? children : null);
+  const { t } = useTranslation();
+
   return (
     <MaterialTableCell align={align} style={style}>
-      {i18nText || children}
+      {typeof children === "string" ? t(children) : children}
     </MaterialTableCell>
   );
 }
@@ -14,4 +15,5 @@ export default function TableCell({ align, style, children }) {
 TableCell.propTypes = {
   align: PropTypes.string,
   style: PropTypes.object,
+  children: PropTypes.oneOfType([PropTypes.string, PropTypes.node]),
 };

@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { useDispatch } from "react-redux";
 import PropTypes from "prop-types";
 import PageWrapper from "components/PageWrapper";
 import { useHistory } from "react-router-dom";
@@ -10,6 +11,7 @@ import { useSelector } from "react-redux";
 import { makeStyles } from "@material-ui/core/styles";
 import Button from "components/Button";
 import ButtonLine from "components/ButtonLine";
+import { updateMember } from "store/slice/member";
 
 const useStyle = makeStyles(() => {
   return {
@@ -20,11 +22,13 @@ const useStyle = makeStyles(() => {
 });
 
 export function EditMember({ match }) {
-  const history = useHistory();
   const { t } = useTranslation();
+  const history = useHistory();
+  const dispatch = useDispatch();
   const classes = useStyle();
   const memberId = match.params.id;
   const memberInfo = useSelector((state) => state.member.data[memberId]);
+  const [cacheMemberInfo, setCache] = useState({});
   const [beenModified, setBeenModified] = useState(false);
 
   const formSetting = [
@@ -72,9 +76,18 @@ export function EditMember({ match }) {
     history.push("/member");
   };
 
-  const handelSubmit = () => {};
+  const handelSubmit = () => {
+    dispatch(
+      updateMember({
+        memberId,
+        payload: cacheMemberInfo,
+        callback: () => history.push("/member"),
+      })
+    );
+  };
 
-  const handelFieldChange = () => {
+  const handelFieldChange = (data) => {
+    setCache(data);
     if (beenModified) return;
     setBeenModified(true);
   };

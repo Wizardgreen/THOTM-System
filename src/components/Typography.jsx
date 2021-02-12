@@ -1,6 +1,5 @@
 import MaterialTypography from "@material-ui/core/Typography";
 import PropTypes from "prop-types";
-import { useTranslation } from "react-i18next";
 
 export default function Typography({
   variant = "body1",
@@ -11,7 +10,6 @@ export default function Typography({
   gutterBottom = false,
   children = "",
 }) {
-  const { t } = useTranslation();
   return (
     <MaterialTypography
       variant={variant}
@@ -21,7 +19,7 @@ export default function Typography({
       paragraph={paragraph}
       gutterBottom={gutterBottom}
     >
-      {typeof children === "string" ? t(children) : children}
+      {children}
     </MaterialTypography>
   );
 }

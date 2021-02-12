@@ -14,12 +14,20 @@ export const fetchMemberList = createAsyncThunk(
 
 export const postNewMember = createAsyncThunk(
   "member/postNewMember",
-  async () => {}
+  async ({ memberId, payload, callback }, { extra }) => {
+    await extra
+      .getFirebase()
+      .set(`member/${memberId}`, payload, () => callback());
+  }
 );
 
 export const updateMember = createAsyncThunk(
   "member/updateMember",
-  async () => {}
+  async ({ memberId, payload, callback }, { extra }) => {
+    await extra
+      .getFirebase()
+      .set(`member/${memberId}`, payload, () => callback());
+  }
 );
 
 const memberSlice = createSlice({

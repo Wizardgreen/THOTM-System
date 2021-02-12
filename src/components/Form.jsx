@@ -75,9 +75,9 @@ export default function Form({
   setting = [],
   disableBtn = false,
   onConfirm = null,
-  confirmBtnText = "confirm",
+  confirmBtnText = "i18n_confirm",
   onCancel = null,
-  cancelBtnText = "cancel",
+  cancelBtnText = "i18n_cancel",
   defaultData = null,
   onFieldChange = null,
 }) {

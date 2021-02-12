@@ -10,6 +10,7 @@ import Link from "components/Link";
 import TableCell from "./TableCell";
 import mapping from "utils/mapping";
 import { isFunction } from "utils/lodash";
+import { useTranslation } from "react-i18next";
 
 export const Cell = {
   Text: "text",
@@ -17,7 +18,7 @@ export const Cell = {
   Link: "link",
 };
 
-const renderCell = (head, data) => {
+const renderCell = (head, data, t) => {
   let content = null;
   const map = head.map;
   const value = data[head.name];
@@ -32,14 +33,14 @@ const renderCell = (head, data) => {
           color="secondary"
           onClick={() => head.func(data)}
         >
-          {head.label}
+          {t(head.label)}
         </Button>
       );
       break;
     case Cell.Link:
       content = (
         <Link
-          text={head.text}
+          text={t(head.text)}
           path={isFunction(head.path) ? head.path(data) : head.path}
         />
       );
@@ -56,6 +57,7 @@ const renderCell = (head, data) => {
 };
 
 export function Table({ header = [], dataList = [] }) {
+  const { t } = useTranslation();
   return (
     <TableContainer component={Paper}>
       <MaterialTable stickyHeader>
@@ -76,7 +78,7 @@ export function Table({ header = [], dataList = [] }) {
           {dataList.map((item) => {
             return (
               <TableRow hover key={item.id}>
-                {header.map((head) => renderCell(head, item))}
+                {header.map((head) => renderCell(head, item, t))}
               </TableRow>
             );
           })}

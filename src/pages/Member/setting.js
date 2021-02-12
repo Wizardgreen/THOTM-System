@@ -26,26 +26,27 @@ export const tableHeader = [
   "name",
   "nickname",
   "lineId",
-  "phone",
   "program",
   "storage",
   "programExpiryDate",
   "note",
   "view",
 ].map((name) => {
+  const set = {
+    name,
+    label: `i18n_${name}`,
+  };
   if (name === "program") {
-    return { name, label: name, type: Cell.Text, map: program };
+    set.type = Cell.Text;
+    set.map = program;
+  } else if (name === "view") {
+    set.type = Cell.Link;
+    set.text = `i18n_${name}`;
+    set.path = ({ id }) => `member/${id}`;
+  } else {
+    set.type = Cell.Text;
   }
-  if (name === "view") {
-    return {
-      name,
-      label: name,
-      type: Cell.Link,
-      text: "view",
-      path: ({ id }) => `member/${id}`,
-    };
-  }
-  return { name, label: name, type: Cell.Text };
+  return set;
 });
 
 export const formSetting = [
